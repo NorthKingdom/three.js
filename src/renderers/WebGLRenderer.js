@@ -544,6 +544,8 @@ function WebGLRenderer( parameters ) {
 
 		_canvas.removeEventListener( 'webglcontextlost', onContextLost, false );
 
+		_this = null;
+    _gl = null;
 	};
 
 	// Events
