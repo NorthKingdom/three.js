@@ -315,6 +315,11 @@ function WebGLShadowMap( _renderer, _lights, _objects, capabilities ) {
 
 	};
 
+	this.dispose = function(){
+    _renderer = null;
+    _renderList = null;
+  };
+
 	function getDepthMaterial( object, material, isPointLight, lightPositionWorld ) {
 
 		var geometry = object.geometry;
