@@ -1511,6 +1511,7 @@ function WebGLRenderer( parameters ) {
 		var code = programCache.getProgramCode( material, parameters );
 
 		var program = materialProperties.program;
+
 		var programChange = true;
 
 		if ( program === undefined ) {
@@ -2118,6 +2119,10 @@ function WebGLRenderer( parameters ) {
 			uniforms.emissiveMap.value = material.emissiveMap;
 
 		}
+
+		uniforms.fresnelIntensity.value = material.fresnelIntensity;
+		uniforms.fresnelColor.value = material.fresnelColor;
+		uniforms.fresnelPower.value =  Math.max( material.fresnelPower, 1e-4 );
 
 	}
 

@@ -8,6 +8,9 @@ varying vec3 vLightFront;
 
 #endif
 
+varying vec3 vPosition;
+varying vec3 vNormal;
+
 #include <common>
 #include <uv_pars_vertex>
 #include <uv2_pars_vertex>
@@ -44,5 +47,6 @@ void main() {
 	#include <envmap_vertex>
 	#include <lights_lambert_vertex>
 	#include <shadowmap_vertex>
+	#include <fresnel_vertex>
 
 }

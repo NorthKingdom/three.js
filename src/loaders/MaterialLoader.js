@@ -61,6 +61,9 @@ Object.assign( MaterialLoader.prototype, {
 		if ( json.emissive !== undefined ) material.emissive.setHex( json.emissive );
 		if ( json.specular !== undefined ) material.specular.setHex( json.specular );
 		if ( json.shininess !== undefined ) material.shininess = json.shininess;
+		if ( json.fresnelColor !== undefined ) material.fresnelColor.setHex( json.fresnelColor );
+		if ( json.fresnelIntensity !== undefined ) material.fresnelIntensity = json.fresnelIntensity;
+		if ( json.fresnelPower !== undefined ) material.fresnelPower = json.fresnelPower;
 		if ( json.clearCoat !== undefined ) material.clearCoat = json.clearCoat;
 		if ( json.clearCoatRoughness !== undefined ) material.clearCoatRoughness = json.clearCoatRoughness;
 		if ( json.uniforms !== undefined ) material.uniforms = json.uniforms;

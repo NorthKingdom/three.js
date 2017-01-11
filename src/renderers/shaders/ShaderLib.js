@@ -36,7 +36,10 @@ var ShaderLib = {
 			UniformsLib.fog,
 			UniformsLib.lights,
 			{
-				emissive: { value: new Color( 0x000000 ) }
+				emissive: { value: new Color( 0x000000 ) },
+				fresnelColor:{ value: new Color( 0xffffff )},
+				fresnelIntensity:{ value: 0},
+				fresnelPower:{ value: 2}
 			}
 		] ),
 

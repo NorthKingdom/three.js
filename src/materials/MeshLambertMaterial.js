@@ -21,6 +21,10 @@ import { Color } from '../math/Color';
  *  emissive: <hex>,
  *  emissiveIntensity: <float>
  *  emissiveMap: new THREE.Texture( <Image> ),
+
+ *  fresnelColor: <Color>,
+ *  fresnelIntensity: <float>
+ *  fresnelPower: <flot>,
  *
  *  specularMap: new THREE.Texture( <Image> ),
  *
@@ -59,6 +63,10 @@ function MeshLambertMaterial( parameters ) {
 	this.emissive = new Color( 0x000000 );
 	this.emissiveIntensity = 1.0;
 	this.emissiveMap = null;
+
+	this.fresnelColor = new Color( 0xffffff );
+	this.fresnelIntensity = 0;
+	this.fresnelPower = 2;
 
 	this.specularMap = null;
 
@@ -104,6 +112,10 @@ MeshLambertMaterial.prototype.copy = function ( source ) {
 	this.emissive.copy( source.emissive );
 	this.emissiveMap = source.emissiveMap;
 	this.emissiveIntensity = source.emissiveIntensity;
+
+	this.fresnelColor.copy( source.fresnelColor );
+	this.fresnelIntensity = source.fresnelIntensity;
+	this.fresnelPower = source.fresnelPower;
 
 	this.specularMap = source.specularMap;
 

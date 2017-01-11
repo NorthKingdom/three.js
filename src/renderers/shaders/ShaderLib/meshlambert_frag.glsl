@@ -2,6 +2,10 @@ uniform vec3 diffuse;
 uniform vec3 emissive;
 uniform float opacity;
 
+uniform vec3 fresnelColor;
+uniform float fresnelIntensity;
+uniform float fresnelPower;
+
 varying vec3 vLightFront;
 
 #ifdef DOUBLE_SIDED
@@ -9,6 +13,9 @@ varying vec3 vLightFront;
 	varying vec3 vLightBack;
 
 #endif
+
+varying vec3 vPosition;
+varying vec3 vNormal;
 
 #include <common>
 #include <packing>
@@ -74,6 +81,8 @@ void main() {
 	#include <envmap_fragment>
 
 	gl_FragColor = vec4( outgoingLight, diffuseColor.a );
+
+	#include <fresnel_fragment>
 
 	#include <premultiplied_alpha_fragment>
 	#include <tonemapping_fragment>
