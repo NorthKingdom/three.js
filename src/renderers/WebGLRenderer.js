@@ -544,6 +544,9 @@ function WebGLRenderer( parameters ) {
 
 		_canvas.removeEventListener( 'webglcontextlost', onContextLost, false );
 
+		spritePlugin.dispose();
+		lensFlarePlugin.dispose();
+
 		_this = null;
     _gl = null;
 	};

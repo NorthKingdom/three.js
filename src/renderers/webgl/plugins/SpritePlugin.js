@@ -374,6 +374,12 @@ function SpritePlugin( renderer, sprites ) {
 
 	}
 
+	this.dispose = function(){
+		gl = null
+		state = null
+		renderer = null
+	}
+
 }
 
 

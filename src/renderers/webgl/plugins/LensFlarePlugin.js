@@ -383,6 +383,12 @@ function LensFlarePlugin( renderer, flares ) {
 
 	}
 
+	this.dispose = function(){
+		gl = null
+		state = null
+		renderer = null
+	}
+
 }
 
 
