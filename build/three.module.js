@@ -6751,6 +6751,12 @@ function LensFlarePlugin( renderer, flares ) {
 
 	}
 
+	this.dispose = function(){
+		gl = null;
+		state = null;
+		renderer = null;
+	};
+
 }
 
 /**
@@ -7124,6 +7130,12 @@ function SpritePlugin( renderer, sprites ) {
 		}
 
 	}
+
+	this.dispose = function(){
+		gl = null;
+		state = null;
+		renderer = null;
+	};
 
 }
 
@@ -9338,6 +9350,11 @@ function WebGLShadowMap( _renderer, _lights, _objects, capabilities ) {
 		scope.needsUpdate = false;
 
 	};
+
+	this.dispose = function(){
+    _renderer = null;
+    _renderList = null;
+  };
 
 	function getDepthMaterial( object, material, isPointLight, lightPositionWorld ) {
 
@@ -20110,6 +20127,11 @@ function WebGLRenderer( parameters ) {
 
 		_canvas.removeEventListener( 'webglcontextlost', onContextLost, false );
 
+		spritePlugin.dispose();
+		lensFlarePlugin.dispose();
+
+		_this = null;
+    _gl = null;
 	};
 
 	// Events
