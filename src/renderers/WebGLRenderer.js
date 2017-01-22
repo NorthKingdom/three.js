@@ -547,8 +547,15 @@ function WebGLRenderer( parameters ) {
 		spritePlugin.dispose();
 		lensFlarePlugin.dispose();
 
+		bufferRenderer.dispose();
+		indexedBufferRenderer.dispose();
+		programCache.dispose();
+
 		_this = null;
     _gl = null;
+
+		this.domElement = null;
+		this.context = null;
 	};
 
 	// Events

@@ -4776,6 +4776,10 @@ function WebGLUniforms( gl, program, renderer ) {
 
 }
 
+WebGLUniforms.prototype.dispose = function(){
+	this.renderer = null;
+};
+
 WebGLUniforms.prototype.setValue = function( gl, name, value ) {
 
 	var u = this.map[ name ];
@@ -15878,7 +15882,7 @@ function WebGLIndexedBufferRenderer( gl, extensions, infoRender ) {
 			size = 2;
 
 		} else {
-			
+
 			type = gl.UNSIGNED_BYTE;
 			size = 1;
 		}
@@ -15916,12 +15920,19 @@ function WebGLIndexedBufferRenderer( gl, extensions, infoRender ) {
 
 	}
 
+	function dispose(){
+		gl = null ;
+		extensions = null;
+		infoRender = null;
+	}
+
 	return {
 
 		setMode: setMode,
 		setIndex: setIndex,
 		render: render,
-		renderInstances: renderInstances
+		renderInstances: renderInstances,
+		dispose: dispose
 
 	};
 
@@ -15988,10 +15999,17 @@ function WebGLBufferRenderer( gl, extensions, infoRender ) {
 
 	}
 
+	function dispose(){
+		gl = null ;
+		extensions = null;
+		infoRender = null;
+	}
+
 	return {
 		setMode: setMode,
 		render: render,
-		renderInstances: renderInstances
+		renderInstances: renderInstances,
+		dispose: dispose
 	};
 
 }
@@ -16795,6 +16813,15 @@ function WebGLProgram( renderer, code, material, parameters ) {
 	this.vertexShader = glVertexShader;
 	this.fragmentShader = glFragmentShader;
 
+	this.dispose = function(){
+		cachedUniforms.dispose();
+		cachedUniforms = null;
+		renderer = null;
+		code = null;
+		material = null;
+		parameters = null;
+	};
+
 	return this;
 
 }
@@ -17086,6 +17113,18 @@ function WebGLPrograms( renderer, capabilities ) {
 
 		}
 
+	};
+
+	this.dispose = function(){
+
+		for ( var p = 0, pl = programs.length; p < pl; p ++ ) {
+
+			programs[ p ].dispose();
+
+		}
+
+		renderer = null;
+		capabilities = null;
 	};
 
 	// Exposed for resource monitoring & error feedback via renderer.info:
@@ -20139,8 +20178,15 @@ function WebGLRenderer( parameters ) {
 		spritePlugin.dispose();
 		lensFlarePlugin.dispose();
 
+		bufferRenderer.dispose();
+		indexedBufferRenderer.dispose();
+		programCache.dispose();
+
 		_this = null;
     _gl = null;
+
+		this.domElement = null;
+		this.context = null;
 	};
 
 	// Events

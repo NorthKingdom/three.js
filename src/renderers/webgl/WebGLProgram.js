@@ -663,6 +663,15 @@ function WebGLProgram( renderer, code, material, parameters ) {
 	this.vertexShader = glVertexShader;
 	this.fragmentShader = glFragmentShader;
 
+	this.dispose = function(){
+		cachedUniforms.dispose()
+		cachedUniforms = null
+		renderer = null;
+		code = null;
+		material = null;
+		parameters = null;
+	}
+
 	return this;
 
 }

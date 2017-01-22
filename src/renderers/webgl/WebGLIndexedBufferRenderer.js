@@ -27,7 +27,7 @@ function WebGLIndexedBufferRenderer( gl, extensions, infoRender ) {
 			size = 2;
 
 		} else {
-			
+
 			type = gl.UNSIGNED_BYTE;
 			size = 1;
 		}
@@ -65,12 +65,19 @@ function WebGLIndexedBufferRenderer( gl, extensions, infoRender ) {
 
 	}
 
+	function dispose(){
+		gl = null ;
+		extensions = null;
+		infoRender = null;
+	}
+
 	return {
 
 		setMode: setMode,
 		setIndex: setIndex,
 		render: render,
-		renderInstances: renderInstances
+		renderInstances: renderInstances,
+		dispose: dispose
 
 	};
 

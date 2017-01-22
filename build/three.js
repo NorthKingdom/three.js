@@ -4782,6 +4782,10 @@
 
 	}
 
+	WebGLUniforms.prototype.dispose = function(){
+		this.renderer = null;
+	};
+
 	WebGLUniforms.prototype.setValue = function( gl, name, value ) {
 
 		var u = this.map[ name ];
@@ -15884,7 +15888,7 @@
 				size = 2;
 
 			} else {
-				
+
 				type = gl.UNSIGNED_BYTE;
 				size = 1;
 			}
@@ -15922,12 +15926,19 @@
 
 		}
 
+		function dispose(){
+			gl = null ;
+			extensions = null;
+			infoRender = null;
+		}
+
 		return {
 
 			setMode: setMode,
 			setIndex: setIndex,
 			render: render,
-			renderInstances: renderInstances
+			renderInstances: renderInstances,
+			dispose: dispose
 
 		};
 
@@ -15994,10 +16005,17 @@
 
 		}
 
+		function dispose(){
+			gl = null ;
+			extensions = null;
+			infoRender = null;
+		}
+
 		return {
 			setMode: setMode,
 			render: render,
-			renderInstances: renderInstances
+			renderInstances: renderInstances,
+			dispose: dispose
 		};
 
 	}
@@ -16801,6 +16819,15 @@
 		this.vertexShader = glVertexShader;
 		this.fragmentShader = glFragmentShader;
 
+		this.dispose = function(){
+			cachedUniforms.dispose();
+			cachedUniforms = null;
+			renderer = null;
+			code = null;
+			material = null;
+			parameters = null;
+		};
+
 		return this;
 
 	}
@@ -17092,6 +17119,18 @@
 
 			}
 
+		};
+
+		this.dispose = function(){
+
+			for ( var p = 0, pl = programs.length; p < pl; p ++ ) {
+
+				programs[ p ].dispose();
+
+			}
+
+			renderer = null;
+			capabilities = null;
 		};
 
 		// Exposed for resource monitoring & error feedback via renderer.info:
@@ -20145,8 +20184,15 @@
 			spritePlugin.dispose();
 			lensFlarePlugin.dispose();
 
+			bufferRenderer.dispose();
+			indexedBufferRenderer.dispose();
+			programCache.dispose();
+
 			_this = null;
 	    _gl = null;
+
+			this.domElement = null;
+			this.context = null;
 		};
 
 		// Events

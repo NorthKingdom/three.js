@@ -290,6 +290,18 @@ function WebGLPrograms( renderer, capabilities ) {
 
 	};
 
+	this.dispose = function(){
+
+		for ( var p = 0, pl = programs.length; p < pl; p ++ ) {
+
+			programs[ p ].dispose();
+
+		}
+
+		renderer = null
+		capabilities = null
+	}
+
 	// Exposed for resource monitoring & error feedback via renderer.info:
 	this.programs = programs;
 

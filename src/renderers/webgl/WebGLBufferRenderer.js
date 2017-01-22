@@ -59,10 +59,17 @@ function WebGLBufferRenderer( gl, extensions, infoRender ) {
 
 	}
 
+	function dispose(){
+		gl = null ;
+		extensions = null;
+		infoRender = null;
+	}
+
 	return {
 		setMode: setMode,
 		render: render,
-		renderInstances: renderInstances
+		renderInstances: renderInstances,
+		dispose: dispose
 	};
 
 }

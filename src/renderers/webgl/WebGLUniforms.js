@@ -479,6 +479,10 @@ function WebGLUniforms( gl, program, renderer ) {
 
 }
 
+WebGLUniforms.prototype.dispose = function(){
+	this.renderer = null
+}
+
 WebGLUniforms.prototype.setValue = function( gl, name, value ) {
 
 	var u = this.map[ name ];
